@@ -16,7 +16,7 @@
       <h3 v-for="(calculation, index) in historyList" :key="index" id="result-in-history">
         {{ calculation }}
       </h3>
-      <span id="clear-button" @click="clearHistory">Clear</span>
+      <span id="clear-button" @click="clearHistory()">Clear</span>
     </div>
   </div>
 </template>
@@ -74,6 +74,11 @@ const historyList = ref([]);
 
 onMounted(() => (historyList.value = historyStorage.value))
 
+function clearHistory() {
+  for (let i = 0; i < historyList.value.length; i++) {
+    historyList.value.pop()
+  }
+}
 
 // this function does everything
 function calculate(button) {
