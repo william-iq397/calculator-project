@@ -219,9 +219,12 @@ onKeyStroke('Backspace', (e) => {
 }, { eventName: 'keydown' })
 
 // get the result using (= , Enter) keys
-onKeyStroke('Enter', (e) => {
+const resultKeys = ['=', 'Enter']
+resultKeys.forEach(key => {
+onKeyStroke( key , (e) => {
+  e.preventDefault()
+  
   // turning multiply into '*' to be easy calculated
-
   if (operation.value === "×") {
     operation.value = "*";
   }
@@ -258,6 +261,7 @@ onKeyStroke('Enter', (e) => {
   currentValue.value = "";
   operation.value = "";
 }, { eventName: 'keyup' })
+});
 
 </script>
 
