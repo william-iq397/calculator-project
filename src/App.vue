@@ -219,46 +219,50 @@ onKeyStroke('Backspace', (e) => {
 }, { eventName: 'keydown' })
 
 // get the result using (= , Enter) keys
-onKeyStroke('Enter', (e) => {
-  // turning multiply into '*' to be easy calculated
+const resultKeys = ['=', 'Enter']
+resultKeys.forEach(key => {
 
-  if (operation.value === "×") {
-    operation.value = "*";
-  }
+  onKeyStroke(key, (e) => {
+    // turning multiply into '*' to be easy calculated
 
-  // turning divide into '/' to be easy calculated
-  if (operation.value === "÷") {
-    operation.value = '/'
-  }
+    if (operation.value === "×") {
+      operation.value = "*";
+    }
 
-  // saving the process of calculation into one variable (not include the result)
-  processOfCalculation.value =
-    previousValue.value + " " + operation.value + " " + currentValue.value;
+    // turning divide into '/' to be easy calculated
+    if (operation.value === "÷") {
+      operation.value = '/'
+    }
 
-
-  // calculate( number before operation sign + the operation sign + number after operation sign)
-  resultValue.value = eval(
-    previousValue.value + operation.value + currentValue.value
-  );
-  // prepare the data to push to the history
-  resultInHistory.value =
-    processOfCalculation.value + " " + "=" + " " + resultValue.value;
+    // saving the process of calculation into one variable (not include the result)
+    processOfCalculation.value =
+      previousValue.value + " " + operation.value + " " + currentValue.value;
 
 
-  // push the data to the history if there is an operation
+    // calculate( number before operation sign + the operation sign + number after operation sign)
+    resultValue.value = eval(
+      previousValue.value + operation.value + currentValue.value
+    );
+    // prepare the data to push to the history
+    resultInHistory.value =
+      processOfCalculation.value + " " + "=" + " " + resultValue.value;
 
-  historyList.value.push(resultInHistory.value);
+
+    // push the data to the history if there is an operation
+
+    historyList.value.push(resultInHistory.value);
 
 
-  /* SAVING THE DATA OF THE HISTORY INTO THE localStorage */
-  historyStorage.value = historyList.value
+    /* SAVING THE DATA OF THE HISTORY INTO THE localStorage */
+    historyStorage.value = historyList.value
 
-  // remove the numbers from the result bar WHEN CLICK THE EQUAL BUTTON
-  previousValue.value = "";
-  currentValue.value = "";
-  operation.value = "";
-}, { eventName: 'keyup' })
+    // remove the numbers from the result bar WHEN CLICK THE EQUAL BUTTON
+    previousValue.value = "";
+    currentValue.value = "";
+    operation.value = "";
+  }, { eventName: 'keypress' })
 
+});
 </script>
 
 <style>
