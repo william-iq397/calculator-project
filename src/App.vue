@@ -74,11 +74,6 @@ const historyList = ref([]);
 
 onMounted(() => (historyList.value = historyStorage.value))
 
-function clearHistory() {
-  for (let i = 0; i < historyList.value.length; i++) {
-    historyList.value.pop()
-  }
-}
 
 // this function does everything
 function calculate(button) {
