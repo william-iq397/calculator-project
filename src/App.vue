@@ -186,7 +186,7 @@ function calculate(button) {
 
 // CLEAR ALL THE CALCULATION FROM THE HISTORY
 const clearHistory = () => {
-  while (history.value.length > 0) history.value.pop();
+  while (historyList.value.length > 0) historyList.value.pop();
 };
 
 
