@@ -260,7 +260,7 @@ onKeyStroke( key , (e) => {
   previousValue.value = "";
   currentValue.value = "";
   operation.value = "";
-}, { eventName: 'keyup' })
+}, { eventName: 'keypress' })
 });
 
 </script>
